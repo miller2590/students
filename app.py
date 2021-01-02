@@ -1,31 +1,35 @@
 student_list = []
 
 
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.marks = []
+
+    def average_mark(self):
+        number = len(self.marks)
+        if len(self.marks) == 0:
+            return 0
+
+        total = sum(self.marks)
+        return total / number
+
+
 def create_student():
     new_name = input("Name: ").capitalize()
-    new_student = {'name': new_name,
-                   'marks': []
-                   }
+    new_student = Student(new_name)
+
     return new_student
 
 
 def update_marks(student, mark):
-    student['marks'].append(mark)
-
-
-def calculate_average_mark(student):
-    if len(student['marks']) == 0:
-        return 0
-
-    total = sum(student['marks'])
-    average = total / len(student['marks'])
-    return average
+    student.marks.append(mark)
 
 
 def print_student_details(student):
-    print(f"""{student['name']} 
-    Grades: {student['marks']} 
-    Average: {calculate_average_mark(student)}.""")
+    print(f"""{student.name} 
+    Grades: {student.marks} 
+    Average: {student.average_mark()}.""")
 
 
 def print_student_list(students):
